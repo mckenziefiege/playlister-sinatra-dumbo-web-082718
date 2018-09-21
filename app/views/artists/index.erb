@@ -1,1 +1,9 @@
-;lihy;sfogihaldrkgj
+<h1>All Artists:</h1>
+
+<ol>
+<% @artists.each do |artist| %>
+  <li>
+    <a href="/artists/<%= artist.slug %>"><%= artist.name %></a><br>
+  </li>
+<% end %>
+</ol>

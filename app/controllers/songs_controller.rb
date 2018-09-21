@@ -1,6 +1,7 @@
 class SongsController < ApplicationController
 
   get '/songs' do
+    @songs = Song.all
     erb :"songs/index"
   end
 
@@ -11,15 +12,15 @@ class SongsController < ApplicationController
   end
 
   post '/songs' do
-
     @song = Song.find_or_create_by(params[:song])
     @artist = Artist.find_or_create_by(params[:artist])
-  binding.pry
     #flash[:message] = "Successfully created song."
     redirect to("/songs/#{@song.slug}")
   end
 
   get '/songs/:slug' do
+    @song = Song.find()
+    @artist = Artist.find(@song.artist_id)
     erb :"/songs/show"
   end
 
